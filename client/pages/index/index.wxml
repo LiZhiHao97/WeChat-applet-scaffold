@@ -1,0 +1,43 @@
+<!--index.wxml-->
+<view class="container">
+
+  <block wx:if="{{hasUserInfo || !canIUse}}">
+    <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </block>
+
+  <button wx:if="{{!hasUserInfo && canIUse}}" open-type='getUserInfo' bindgetuserinfo="getUserInfo"> 获取头像昵称 {{hasUserInfoWording}} </button>
+
+  <button bindtap="uploadFile"> 上传 cloud.uploadFile {{uploadProgress}} </button>
+
+  <button bindtap="downloadFile"> 下载 cloud.downloadFile {{downloadProgress}} </button>
+
+  <button bindtap="getTempFileURL"> 获取临时链接 cloud.getTempFileURL </button>
+
+  <button bindtap="deleteFile"> 删除文件 cloud.deleteFile </button>
+
+  <button bindtap="callFunction2"> 云函数 获取知乎个性日报 cloud.callFunction
+    <view wx:if="{{hasRecommend}}" style="color: blue">为用户{{recommendOpenid}}推荐</view>
+    <block wx:if="{{hasRecommend}}" wx:for="{{recommend}}" wx:key="{{item}}">
+      <view style="color: blue"> * {{item}}</view>
+    </block>
+  </button>
+
+  <button bindtap="showDBInfo"> 获取数据库中存放的用户信息 
+    <view>
+      <image 
+      wx:if="{{showDBInfo}}" 
+      wx:for="{{db.imgs}}" 
+      wx:key="{{item.src}}" 
+      src="{{item.src}}" 
+      class="dbimg"
+      mode="cover"></image>
+    </view>
+  </button>
+
+  <view class="msg normal">当前文件 ID: <view>{{fileID}}</view></view>
+  <view class="msg error">{{statusMsg}}</view>
+
+  <!-- <view wx:if="{{showDBInfo}}" class="msg raw">{{db.raw}}</view> -->
+
+</view>

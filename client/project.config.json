@@ -1,0 +1,9 @@
+{
+	"cloudfunctionRoot": "cloud-functions/",
+	"setting": {
+		"newFeature": true
+	},
+	"appid": "wx6c06dec51856cd4c",
+	"projectname": "weatherApp",
+	"condition": {}
+}
